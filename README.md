@@ -183,6 +183,95 @@
         if (username === 'vortunix' && password === 'vortunix') {
           showSuccessVideo();
           loginVideo.addEventListener('ended', function() {
+            window.location.href = 'vortunix-infinity.html';
+          }, { once: true });
+        } else {
+          alert('Username atau password salah!');
+        }
+      });
+
+      function showSuccessVideo() {
+        videoContainer.classList.add('active');
+        loginVideo.play().catch(error => {
+          console.error("Error playing video:", error);
+          window.location.href = 'vortunix-infinity.html';
+        });
+      }
+
+      function createSmokeParticles() {
+        const smokeBackground = document.getElementById('smoke-background');
+        for (let i = 0; i < 15; i++) {
+          setTimeout(() => createSmokeParticle(smokeBackground), i * 200);
+        }
+        setInterval(() => createSmokeParticle(smokeBackground), 300);
+      }
+
+      function createSmokeParticle(container) {
+        const particle = document.createElement('div');
+        particle.classList.add('smoke-particle');
+        const leftPosition = Math.random() * 100;
+        particle.style.left = `${leftPosition}%`;
+        const duration = 10 + Math.random() * 20;
+        particle.style.animationDuration = `${duration}s`;
+        const size = 3 + Math.random() * 7;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        const red = 200 + Math.floor(Math.random() * 55);
+        const alpha = 0.3 + Math.random() * 0.4;
+        particle.style.backgroundColor = `rgba(${red}, 50, 50, ${alpha})`;
+        container.appendChild(particle);
+        setTimeout(() => particle.remove(), duration * 1000);
+      }
+
+      createSmokeParticles();
+      loginVideo.load();
+    });
+  </script>
+</body>
+</html>      </video>
+    </div>
+  </div>
+
+  <div class="app-wrapper">
+    <h1 class="main-title">VORTUNIX APPS</h1>
+
+    <div class="container profile-card">
+        <img src="https://files.catbox.moe/4tq0rq.jpg" alt="Logo" class="profile-logo" />
+        <div class="profile-username" style="font-family: 'Orbitron', sans-serif; font-size: 24px; color: #E0E0E0; font-weight: bold; margin-bottom: 8px;">Login Account</div>
+        <div class="profile-details" style="font-size: 14px; color: #9A9A9A;">
+          Please enter your credentials to access the dashboard
+        </div>
+    </div>
+
+    <div class="container">
+        <form id="loginForm">
+            <div class="section-title">Username</div>
+            <input type="text" id="username" placeholder="Enter your username" required />
+
+            <div class="section-title">Password</div>
+            <input type="password" id="password" placeholder="Enter your password" required />
+
+            <button type="submit" class="execute-button">
+              <i class="fas fa-sign-in-alt"></i> LOGIN
+            </button>
+        </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('loginForm');
+      const videoContainer = document.getElementById('videoContainer');
+      const loginVideo = document.getElementById('loginVideo');
+
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (username === 'vortunix' && password === 'vortunix') {
+          showSuccessVideo();
+          loginVideo.addEventListener('ended', function() {
             window.location.href = 'VORTUNIX INFINITY.html';
           }, { once: true });
         } else {
